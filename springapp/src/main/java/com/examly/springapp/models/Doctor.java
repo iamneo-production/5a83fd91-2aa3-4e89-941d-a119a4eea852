@@ -38,7 +38,7 @@ public class Doctor{
 	public Doctor() {
 	}
 
-	public Doctor(String doctorId,String email, String password, String username, String mobileNumber, boolean active, String role, Spring specialization, String hospital) {
+	public Doctor(String doctorId,String email, String password, String username, String mobileNumber, boolean active, String role, String specialization, String hospital) {
 		this.doctorId = doctorId;
 		this.email = email;
 		this.password = password;
@@ -81,8 +81,8 @@ public class Doctor{
 		this.username = username;
 	}
 
-	public String getMobileNo() {
-		return mobileNo;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
 	public void setMobileNumber(String mobileNumber) {

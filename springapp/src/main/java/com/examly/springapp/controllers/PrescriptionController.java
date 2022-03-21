@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.examly.springapp.service.PrescriptionService;
+import com.examly.springapp.services.PrescriptionService;
 import com.examly.springapp.models.Prescription;
 import java.util.*;
 
@@ -17,7 +17,7 @@ public class PrescriptionController {
 
     //4- Add Prescription: id -> prescriptionId
     @RequestMapping(method = RequestMethod.POST, value = "/doctor/prescription")
-    public void addPrescription(@RequestBody Presciption prescription){
+    public void addPrescription(@RequestBody Prescription prescription){
         prescriptionService.addPrescription(prescription);
     }
 

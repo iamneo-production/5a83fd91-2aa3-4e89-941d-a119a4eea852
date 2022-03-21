@@ -64,8 +64,8 @@ public class User {
 		this.username = username;
 	}
 
-	public String getMobileNo() {
-		return mobileNo;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
 	public void setMobileNumber(String mobileNumber) {
