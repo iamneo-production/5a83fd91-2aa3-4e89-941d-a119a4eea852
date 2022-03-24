@@ -1,11 +1,15 @@
 package com.examly.springapp.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class UserModel {
 	
 	@Id
@@ -69,8 +73,7 @@ public class UserModel {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,5 +82,5 @@ public class UserModel {
         return Objects.equals(username, user.getUsername()) ||
                 Objects.equals(email, user.getEmail()) || Objects.equals(mobileNumber,user.getMobileNumber());
     }
-    
+
 }

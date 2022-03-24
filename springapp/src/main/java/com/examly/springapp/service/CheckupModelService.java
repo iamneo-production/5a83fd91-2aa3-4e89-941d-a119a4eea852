@@ -19,4 +19,19 @@ public class CheckupModelService {
 		return checkupModelRepository.findById(id);
 	}
 
+	public CheckupModelService addCheckup(CheckupModelService added) {
+		
+		return checkupModelRepository.save(added);
+	}
+
+	public String delete(Long checkup) {
+		
+		return checkupModelRepository.delete(checkup);
+	}
+
+	public CheckupModel updateCheckup(CheckupModel checkup) {
+		
+		return checkupModelRepository.save(checkup);
+	}
+
 }

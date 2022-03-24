@@ -19,4 +19,24 @@ public class PrescriptionService {
 		return prescriptionModelRepository.findById(prescriptionId);
 	}
 
+	public PrescriptionService addPrescription(PrescriptionService created) {
+		
+		return prescriptionModelRepository.save(created);
+	}
+
+	public String delete(Long prescription) {
+		
+		return prescriptionModelRepository.delete(prescription);
+	}
+
+	public Optional<PrescriptionModel> getPrescriptionDetails(Long checkupDetails) {
+		
+		return prescriptionModelRepository.findById(checkupDetails);
+	}
+
+	public PrescriptionModel updatePrescription(PrescriptionModel prescription) {
+		
+		return prescriptionModelRepository.save(prescription);
+	}
+
 }
