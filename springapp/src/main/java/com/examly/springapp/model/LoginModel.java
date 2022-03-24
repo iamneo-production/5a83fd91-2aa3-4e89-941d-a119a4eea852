@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "login")
 public class LoginModel {
 	
 	@Id
@@ -48,5 +50,7 @@ public class LoginModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 }

@@ -3,12 +3,17 @@ package com.examly.springapp.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="booking")
 public class BookingModel {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookingId;
 	private UserModel patientDetail;
 	private DoctorModel doctorDetail;
@@ -88,5 +93,6 @@ public class BookingModel {
 	public void setBookingStatus(Boolean bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
+	
 
 }
