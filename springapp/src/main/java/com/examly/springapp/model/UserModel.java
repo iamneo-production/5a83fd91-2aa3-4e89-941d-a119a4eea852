@@ -1,7 +1,9 @@
 package com.examly.springapp.model;
 
 import java.util.Objects;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,13 +17,20 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable=false,unique=true,length=50)
 	private String email;
+	@Column(nullable=false,length=64)
 	private String password;
+	@Column(nullable=false)
 	private String username;
+	@Column(nullable=false)
 	private String mobileNumber;
+	@Column(nullable=false)
 	private Boolean active = true;
+	@Column(nullable=false)
 	private String role;
 	
+
 	public UserModel() {
 		
 	}
@@ -74,13 +83,5 @@ public class UserModel {
 		this.role = role;
 	}
 	
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserModel)) return false;
-        UserModel user = (UserModel) o;
-        return Objects.equals(username, user.getUsername()) ||
-                Objects.equals(email, user.getEmail()) || Objects.equals(mobileNumber,user.getMobileNumber());
-    }
 
 }

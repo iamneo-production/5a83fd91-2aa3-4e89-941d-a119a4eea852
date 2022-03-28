@@ -1,11 +1,15 @@
 package com.examly.springapp.model;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+
+import com.examly.springapp.model.UserModel;
 
 @Entity
 @Table(name = "prescription")
@@ -13,17 +17,27 @@ public class PrescriptionModel {
 	
 	@Id
 	private Long id;
+
+	@Column(nullable=false)
 	private String prescriptionId;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private UserModel userId;
+
+	@Column(nullable=false)
 	private Date date;
-	private List<String> description;
+
+	@Column(nullable=false)
+	private String description;
+
+	@Column(nullable=false)
 	private UserModel issuedBy;
 	
 	public PrescriptionModel() {
 		
 	}
 	
-	public PrescriptionModel(Long id, String prescriptionId, UserModel userId, Date date, List<String> description,
+	public PrescriptionModel(Long id, String prescriptionId, UserModel userId, Date date, String description,
 			UserModel issuedBy) {
 		super();
 		this.id = id;
@@ -66,11 +80,11 @@ public class PrescriptionModel {
 		this.date = date;
 	}
 
-	public List<String> getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(List<String> description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
