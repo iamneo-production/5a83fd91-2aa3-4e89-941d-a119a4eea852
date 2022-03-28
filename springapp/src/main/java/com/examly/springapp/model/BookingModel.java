@@ -2,6 +2,7 @@ package com.examly.springapp.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +16,18 @@ public class BookingModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookingId;
+
+	@Column(nullable=false)
 	private UserModel patientDetail;
+	@Column(nullable=false)
 	private DoctorModel doctorDetail;
+	@Column(nullable=false)
 	private String hospitalName;
+	@Column(nullable=false)
 	private Date date;
+	@Column(nullable=false)
 	private Date time;
+	@Column(nullable=false)
 	private Boolean bookingStatus = true;
 	
 	public BookingModel() {
