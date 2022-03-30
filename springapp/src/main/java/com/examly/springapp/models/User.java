@@ -7,8 +7,8 @@ import javax.persistence.Column;
 @Entity
 public class User {
 	
-    @Id
-    @Column(name = "email", unique = true, nullable = false)
+	@Id
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
     @Column(name = "password")
@@ -25,19 +25,37 @@ public class User {
 
     @Column(name = "role")
 	private String role;
+
+	@Column(name = "specializaiton")
+	private String specialization;
+
+	@Column(name = "hospital")
+	private String hospital;
 	
 	public User() {
-		super();
 	}
 
+	
+
 	public User(String email, String password, String username, String mobileNumber, boolean active, String role) {
-		super();
 		this.email = email;
 		this.password = password;
 		this.username = username;
 		this.mobileNumber = mobileNumber;
 		this.active = active;
 		this.role = role;
+		
+	}
+	public User(String email, String password, String username, String mobileNumber, boolean active, String role,String specialization, String hospital) {
+		this.email = email;
+		this.password = password;
+		this.username = username;
+		this.mobileNumber = mobileNumber;
+		this.active = active;
+		this.role = role;
+		this.specialization = specialization;
+		this.hospital = hospital;
+		
 	}
 
 	public String getEmail() {
@@ -87,5 +105,21 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+	public String getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(String hospital) {
+		this.hospital = hospital;
+	}
+
 }
 

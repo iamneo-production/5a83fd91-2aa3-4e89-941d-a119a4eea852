@@ -30,6 +30,6 @@ public class PrescriptionController {
     //6-Delete Prescription: id -> prescriptionId
     @RequestMapping(method = RequestMethod.DELETE, value = "/doctor/prescription/delete/{id}")
     public void deletePrescription(@PathVariable String id){
-        prescriptionService.deletePrescription(id);
+        prescriptionService.delete(id);
     }
 }

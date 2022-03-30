@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.examly.springapp.services.BookingService;
 import com.examly.springapp.models.Booking;
 import java.util.*;
-import com.examly.springapp.models.Doctor;
 
 @RestController
 public class BookingController {
@@ -17,46 +16,15 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-     //Return List of all doctors
-     @RequestMapping("/doctor")
-     public List<Doctor> getAllDoctors(){
-         return bookingService.getAllDoctors();
-     }
-     //Doctor Specific End Points
-    
-    //1-GetAllBooking: Retrieve All bookings
-    @RequestMapping("/doctor/booking")
-    public List<Booking> getBooking(){
-        return bookingService.getBooking();
-    } 
-    
-    //2-Approve Booking: Approve All bookings for a -> (Doctor)
-     @RequestMapping(method = RequestMethod.POST, value = "/doctor/booking")
-     public void approveAllBookings(@RequestBody List<Booking> bookings){
-        bookingService.approveAllBookings(bookings);
-     }
+    //Return List of all doctors---ADMIN privilege
+    @RequestMapping("/admin/bookings")
+    public List<Booking> getAllBookings(){
+        return bookingService.getAllBookings();
+    }
 
-     //3-Reject Booking: id -> bookingId
-     @RequestMapping(method = RequestMethod.DELETE, value = "/doctor/booking/delete/{id}")
-     public void deleteBooking(@PathVariable String id){
-         bookingService.deleteBooking(id);
-     }
-
-    //Other functional methods
-    //Return List of bookings based on doctorId
-     @RequestMapping("/doctor/{id}")
-     public List<Booking> getBookingByDoctor(@PathVariable String doctorId){
-         return bookingService.getDoctorBookings(doctorId);
-     }
-   
-    //id -> bookingId (Booking by ID)
-    @RequestMapping("/doctor/booking/{id}")
-    public Booking getBookingById(@PathVariable String id){
-        return bookingService.getBookingById(id);
+    @RequestMapping(method = RequestMethod.POST, value = "/booking")
+    public void addBooking(@RequestBody Booking booking){
+        bookingService.addBooking(booking);
     }
     
-    
-
-   
-
 }

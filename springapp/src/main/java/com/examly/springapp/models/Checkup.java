@@ -1,43 +1,48 @@
 package com.examly.springapp.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.Table;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+
 
 @Entity
-public class Checkup {
-    @Id
-    @Column(name = "checkupId", unique = true, nullable = false)
-	private String checkupId;
+@Table(name = "checkup")
+public class Checkup{
 
-    @Column(name = "appointmentDetail")
-	private Booking appointmentDetail;
-
-    @Column(name = "prescriptionDetail")
-	private Prescription prescriptionDetail;
-
-    @Column(name = "date")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable=false)
+	private String checkupID;
+	@OneToOne(cascade = CascadeType.ALL)
+	private BookingModel appointmentDetail;
+	@OneToOne(cascade = CascadeType.ALL)
+	private PrescriptionModel prescriptionDetail;
+	@Column(nullable=false)
 	private Date date;
-
-    @Column(name = "diseases")
+	@Column(nullable=false)
 	private String diseases;
-
-    @Column(name = "report")
+	@Column(nullable=false)
 	private String report;
-    
-    @Column(name = "issuedBy")
-	private User issuedBy;
-    
-
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserModel issuedBy;
+	
 	public Checkup() {
-		super();
+		
 	}
 
-	public Checkup(String checkupId, Booking appointmentDetail, Prescription prescriptionDetail, Date date,
-			String diseases, String report, User issuedBy) {
+	public Checkup(Long id, String checkupID, BookingModel appointmentDetail, PrescriptionModel prescriptionDetail,
+			Date date, String diseases, String report, UserModel issuedBy) {
 		super();
-		this.checkupId = checkupId;
+		this.id = id;
+		this.checkupID = checkupID;
 		this.appointmentDetail = appointmentDetail;
 		this.prescriptionDetail = prescriptionDetail;
 		this.date = date;
@@ -46,27 +51,35 @@ public class Checkup {
 		this.issuedBy = issuedBy;
 	}
 
-	public String getCheckupId() {
-		return checkupId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCheckupId(String checkupId) {
-		this.checkupId = checkupId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Booking getAppointmentDetail() {
+	public String getCheckupID() {
+		return checkupID;
+	}
+
+	public void setCheckupID(String checkupID) {
+		this.checkupID = checkupID;
+	}
+
+	public BookingModel getAppointmentDetail() {
 		return appointmentDetail;
 	}
 
-	public void setAppointmentDetail(Booking appointmentDetail) {
+	public void setAppointmentDetail(BookingModel appointmentDetail) {
 		this.appointmentDetail = appointmentDetail;
 	}
 
-	public Prescription getPrescriptionDetail() {
+	public PrescriptionModel getPrescriptionDetail() {
 		return prescriptionDetail;
 	}
 
-	public void setPrescriptionDetail(Prescription prescriptionDetail) {
+	public void setPrescriptionDetail(PrescriptionModel prescriptionDetail) {
 		this.prescriptionDetail = prescriptionDetail;
 	}
 
@@ -94,12 +107,12 @@ public class Checkup {
 		this.report = report;
 	}
 
-	public User getIssuedBy() {
+	public UserModel getIssuedBy() {
 		return issuedBy;
 	}
 
-	public void setIssuedBy(User issuedBy) {
+	public void setIssuedBy(UserModel issuedBy) {
 		this.issuedBy = issuedBy;
 	}
-    
+	
 }

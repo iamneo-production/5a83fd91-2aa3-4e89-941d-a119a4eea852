@@ -1,60 +1,54 @@
 package com.examly.springapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Doctor{
+@Table(name = "doctor")
+public class Doctor {
 	
-    @Id
-	@Column(name = "doctorId",unique=true, nullable=false)
-	private String doctorId;
-
-    @Column(name = "email")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable=false, unique=true,length=50)
 	private String email;
-
-    @Column(name = "password")
+	@Column(nullable=false, length=64)
 	private String password;
-
-    @Column(name = "username")
+	@Column(nullable=false)
 	private String username;
-
-    @Column(name = "mobileNumber")
+	@Column(nullable=false)
 	private String mobileNumber;
-
-    @Column(name = "active")
-	private boolean active;
-
-    @Column(name = "role")
+	@Column(nullable=false)
+	private Boolean active = true;
+	@Column(nullable=false)
 	private String role;
-
-	@Column(name = "specialization")
-	private String specialization;
-
-    @Column(name = "hospital")
-	private String hospital;
 	
 	public Doctor() {
+		
 	}
-
-	public Doctor(String doctorId,String email, String password, String username, String mobileNumber, boolean active, String role, String specialization, String hospital) {
-		this.doctorId = doctorId;
+	
+	public Doctor(Long id, String email, String password, String username, String mobileNumber, Boolean active,
+			String role) {
+		super();
+		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.username = username;
 		this.mobileNumber = mobileNumber;
 		this.active = active;
 		this.role = role;
-		this.specialization=specialization;
-		this.hospital=hospital;
 	}
 
-	public String getDoctorId(){
-		return doctorId;
+	public Long getId() {
+		return id;
 	}
-	public void setDoctorId(String doctorId){
-		this.doctorId=doctorId;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -89,11 +83,11 @@ public class Doctor{
 		this.mobileNumber = mobileNumber;
 	}
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
@@ -104,20 +98,6 @@ public class Doctor{
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getSpecialization() {
-		return specialization;
-	}
+	
 
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
-	}
-
-	public String getHospital() {
-		return password;
-	}
-
-	public void setHospital(String hospital){
-		this.hospital = hospital;
-	}
 }
-

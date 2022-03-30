@@ -3,45 +3,37 @@ package com.examly.springapp.models;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Embedded;
 import javax.persistence.Id;
-
 
 @Entity
 public class Booking {
-	
 	@Id
     @Column(name = "bookingId", unique = true, nullable = false)
 	private String bookingId;
-
-	@Column(name = "patientDetail")
+	@Embedded	
 	private User patientDetail;
-
-	@Column(name = "doctorDetail")
-	private Doctor doctorDetail;
-
-	@Column(name = "hospitalName")
+	@Embedded	
+	private User doctorDetail;
+	@Column		
 	private String hospitalName;
-
-	@Column(name = "date")
-	private Date date;
-
-	@Column(name = "time")
-	private Date time;
-
-	@Column(name = "bookingStatus")
+	@Column	
+	private Date bookingDate;
+	@Column		
+	private Date bookingTime;
+	@Column		
 	private boolean bookingStatus;
 	
 	public Booking() {
 		super();
 	}
-	public Booking(String bookingId, User patientDetail, Doctor doctorDetail, String hospitalName, Date date, Date time, boolean bookingStatus) {
-		super();
+	public Booking(String bookingId, User patientDetail, User doctorDetail, String hospitalName, Date date, Date time, boolean bookingStatus) {
 		this.bookingId = bookingId;
 		this.patientDetail = patientDetail;
 		this.doctorDetail = doctorDetail;
 		this.hospitalName = hospitalName;
-		this.date = date;
-		this.time = time;
+		this.bookingDate = date;
+		this.bookingTime = time;
 		this.bookingStatus = bookingStatus;
 	}
     public String getBookingId() {
@@ -50,16 +42,18 @@ public class Booking {
 	public void setBookingId(String bookingId) {
 		this.bookingId = bookingId;
 	}
+
 	public User getPatientDetail() {
 		return patientDetail;
 	}
 	public void setPatientDetail(User patientDetail) {
 		this.patientDetail = patientDetail;
 	}
-	public Doctor getDoctorDetail() {
+
+	public User getDoctorDetail() {
 		return doctorDetail;
 	}
-	public void setDoctorDetail(Doctor doctorDetail) {
+	public void setDoctorDetail(User doctorDetail) {
 		this.doctorDetail = doctorDetail;
 	}
 	public String getHospitalName() {
@@ -69,16 +63,16 @@ public class Booking {
 		this.hospitalName = hospitalName;
 	}
 	public Date getDate() {
-		return date;
+		return bookingDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.bookingDate = date;
 	}
 	public Date getTime() {
-		return time;
+		return bookingTime;
 	}
 	public void setTime(Date time) {
-		this.time = time;
+		this.bookingTime = time;
 	}
 	public boolean isBookingStatus() {
 		return bookingStatus;

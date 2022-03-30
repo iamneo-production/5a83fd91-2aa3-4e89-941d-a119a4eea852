@@ -1,42 +1,62 @@
 package com.examly.springapp.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-import java.sql.Date;
-import java.util.*;
-
+import com.examly.springapp.models.User;
 
 @Entity
+@Table(name = "prescription")
 public class Prescription {
-    @Id
-    @Column(name = "prescriptionId",unique = true, nullable = false)
-    private String prescriptionId;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "userId")
-	private User userId;
+	@Column(nullable=false)
+	private String prescriptionId;
 
-    @Column(name = "date")
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserModel userId;
+
+	@Column(nullable=false)
 	private Date date;
 
-    @Column(name = "description")
-	private List<String> mobileNo;
+	@Column(nullable=false)
+	private String description;
 
-    @Column(name = "issuedBy")
-	private User issuedBy;
-
-    public Prescription(String prescriptionId, User userId, Date date, List<String> mobileNo, User issuedBy) {
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserModel issuedBy;
+	
+	public Prescription() {
+		
+	}
+	
+	public Prescription(Long id, String prescriptionId, UserModel userId, Date date, String description,
+			UserModel issuedBy) {
 		super();
+		this.id = id;
 		this.prescriptionId = prescriptionId;
 		this.userId = userId;
 		this.date = date;
-		this.mobileNo = mobileNo;
+		this.description = description;
 		this.issuedBy = issuedBy;
 	}
 
-	public Prescription() {
-		super();
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getPrescriptionId() {
@@ -47,11 +67,11 @@ public class Prescription {
 		this.prescriptionId = prescriptionId;
 	}
 
-	public User getUserId() {
+	public UserModel getUserId() {
 		return userId;
 	}
 
-	public void setUserId(User userId) {
+	public void setUserId(UserModel userId) {
 		this.userId = userId;
 	}
 
@@ -63,20 +83,20 @@ public class Prescription {
 		this.date = date;
 	}
 
-	public List<String> getMobileNo() {
-		return mobileNo;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setMobileNo(List<String> mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public User getIssuedBy() {
+	public UserModel getIssuedBy() {
 		return issuedBy;
 	}
 
-	public void setIssuedBy(User issuedBy) {
+	public void setIssuedBy(UserModel issuedBy) {
 		this.issuedBy = issuedBy;
 	}
-	
+
 }

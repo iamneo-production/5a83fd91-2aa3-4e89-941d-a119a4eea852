@@ -6,12 +6,16 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import com.examly.springapp.models.Login;
 import com.examly.springapp.models.User;
+import com.examly.springapp.repositories.LoginRepository;
 
 @Service
 public class LoginService {
     
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private LoginRepository loginRepository;
 
     public boolean checkUser(Login login) {
         
@@ -38,9 +42,9 @@ public class LoginService {
     }
 
 
-    //Adding user credentials to user table
-    public void addUser(User user){
-        userRepository.save(user);
+    //Adding user credentials to login table
+    public void addUser(Login login){
+        loginRepository.save(login);
     }
 
 

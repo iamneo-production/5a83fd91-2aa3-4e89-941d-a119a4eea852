@@ -1,14 +1,16 @@
 package com.examly.springapp.repositories;
 
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import com.examly.springapp.models.Checkup;
-import java.util.*;
+import com.examly.springapp.services.*;
 
-public interface CheckupRepository extends JpaRepository<Checkup, String>{
-    
-    @Query(value = "SELECT * FROM checkup WHERE checkup_id=?1", nativeQuery = true)
-    List<Checkup> findCheckupsByCheckupId(String checkupId);
+@Repository
+public interface CheckupRepository extends CrudRepository<Checkup, Long> {
 
-    @Query(value = "INSERT into checkup values(checkup.checkupId,checkup.appointmentDetail, checkup.prescriptionDetail, checkup.date, checkup.diseases, checkup.report, checkup.issuedBy", nativeQuery = true)
-    void addCheckup(Checkup checkup);
+	CheckupService save(CheckupService added);
+
+	String delete(Long checkup);
+
 }
