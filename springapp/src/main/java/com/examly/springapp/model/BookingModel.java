@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="booking")
@@ -17,9 +19,9 @@ public class BookingModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookingId;
 
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private UserModel patientDetail;
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private DoctorModel doctorDetail;
 	@Column(nullable=false)
 	private String hospitalName;
@@ -28,14 +30,14 @@ public class BookingModel {
 	@Column(nullable=false)
 	private Date time;
 	@Column(nullable=false)
-	private Boolean bookingStatus = true;
+	private boolean bookingStatus = true;
 	
 	public BookingModel() {
 		
 	}
 	
 	public BookingModel(Long bookingId, UserModel patientDetail, DoctorModel doctorDetail, String hospitalName,
-			Date date, Date time, Boolean bookingStatus) {
+			Date date, Date time, boolean bookingStatus) {
 		super();
 		this.bookingId = bookingId;
 		this.patientDetail = patientDetail;
@@ -94,11 +96,11 @@ public class BookingModel {
 		this.time = time;
 	}
 
-	public Boolean getBookingStatus() {
+	public boolean getBookingStatus() {
 		return bookingStatus;
 	}
 
-	public void setBookingStatus(Boolean bookingStatus) {
+	public void setBookingStatus(boolean bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
 	

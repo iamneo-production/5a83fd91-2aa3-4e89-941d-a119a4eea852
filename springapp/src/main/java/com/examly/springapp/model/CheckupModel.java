@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+
 
 @Entity
 @Table(name = "checkup")
@@ -18,9 +21,9 @@ public class CheckupModel {
 	private Long id;
 	@Column(nullable=false)
 	private String checkupID;
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private BookingModel appointmentDetail;
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private PrescriptionModel prescriptionDetail;
 	@Column(nullable=false)
 	private Date date;
@@ -28,7 +31,7 @@ public class CheckupModel {
 	private String diseases;
 	@Column(nullable=false)
 	private String report;
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private UserModel issuedBy;
 	
 	public CheckupModel() {
