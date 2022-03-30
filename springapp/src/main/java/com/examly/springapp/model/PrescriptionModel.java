@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import com.examly.springapp.model.UserModel;
 
@@ -16,6 +18,7 @@ import com.examly.springapp.model.UserModel;
 public class PrescriptionModel {
 	
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable=false)
@@ -30,7 +33,7 @@ public class PrescriptionModel {
 	@Column(nullable=false)
 	private String description;
 
-	@Column(nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
 	private UserModel issuedBy;
 	
 	public PrescriptionModel() {
